@@ -24,15 +24,17 @@ namespace Workshop2019.Accounting.EmployeeApi
 
         private decimal GetOvertime(EmployeeWorkLogItemDto workLogItem)
         {
+            var defaultWorkingHours = 8;
+
             return IsWeekend(workLogItem.Date)
                 ? workLogItem.WorkedHours
-                : workLogItem.WorkedHours - 8;
+                : workLogItem.WorkedHours - defaultWorkingHours;
         }
 
         private bool IsWeekend(DateTime date)
         {
             return date.DayOfWeek == DayOfWeek.Saturday
-                || date.DayOfWeek == DayOfWeek.Sunday;
+                   || date.DayOfWeek == DayOfWeek.Sunday;
         }
     }
 }
